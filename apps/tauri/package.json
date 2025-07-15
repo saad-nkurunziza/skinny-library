@@ -1,0 +1,15 @@
+{
+  "name": "tauri",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "tauri": "tauri",
+    "build:sidecar": "bun run ../server/prepare-sidecar.ts",
+    "build": "bun run build:sidecar && bun run tauri build",
+    "dev": "bun run build:sidecar && bun run tauri dev"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2"
+  }
+}

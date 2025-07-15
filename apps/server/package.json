@@ -1,0 +1,38 @@
+{
+  "name": "server",
+  "main": "src/index.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc --outDir dist --module CommonJS",
+    "check-types": "tsc --noEmit",
+    "compile": "bun build --compile --minify --sourcemap --bytecode ./src/index.ts --outfile server",
+    "build:sidecar": "bun run prepare-sidecar.ts",
+    "build:tauri": "bun run build:sidecar",
+    "dev": "NODE_ENV=development bun run --hot src/index.ts",
+    "start": "bun run dist/src/index.js",
+    "db:local": "turso dev --db-file local.db",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.16.0",
+    "@hono/trpc-server": "^0.4.0",
+    "@libsql/client": "^0.15.9",
+    "@trpc/client": "^11.4.2",
+    "@trpc/server": "^11.4.2",
+    "dotenv": "^16.4.7",
+    "drizzle-orm": "^0.44.2",
+    "hono": "^4.8.2",
+    "zod": "^4.0.2"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.2.6",
+    "@yao-pkg/pkg": "^6.5.1",
+    "drizzle-kit": "^0.31.2",
+    "esbuild": "^0.25.6",
+    "tsc-alias": "^1.8.11",
+    "typescript": "^5.8.2"
+  }
+}
