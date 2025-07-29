@@ -1,6 +1,5 @@
 import { db } from "@/lib/db";
 import {
-  // filepath: /home/saddy/projects/web-based/skinny-library/seed.ts
   booksTable,
   studentsTable,
   lendingTable,
@@ -9,7 +8,6 @@ import {
   InsertLending,
 } from "./src/database/schema";
 
-// Seed data
 const books: InsertBook[] = [
   {
     id: "book-1",
@@ -119,24 +117,19 @@ const lendings: InsertLending[] = [
   },
 ];
 
-// Seed function
 async function seed() {
-  // Clear tables
   await db.delete(lendingTable);
   await db.delete(booksTable);
   await db.delete(studentsTable);
 
-  // Insert books
   for (const book of books) {
     await db.insert(booksTable).values(book);
   }
 
-  // Insert students
   for (const student of students) {
     await db.insert(studentsTable).values(student);
   }
 
-  // Insert lendings
   for (const lending of lendings) {
     await db.insert(lendingTable).values(lending);
   }

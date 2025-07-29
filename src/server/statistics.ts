@@ -1,4 +1,3 @@
-// statistics server functions
 "use server";
 
 import { db } from "@/lib/db";
@@ -156,7 +155,6 @@ export async function getOverdueBooks() {
     }));
   } catch (error) {
     console.error("Error getting overdue books:", error);
-    // Return mock data as fallback
     throw new Error("Failed to fetch data");
   }
 }

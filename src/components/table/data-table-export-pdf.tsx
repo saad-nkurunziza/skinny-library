@@ -53,7 +53,6 @@ export function DataTableExportPDF<TData>({
       doc.text(`Total Records: ${rows.length}`, 20, 30);
       doc.text(`Generated: ${new Date().toLocaleDateString()}`, 20, 37);
 
-      // Get visible columns (excluding select and actions columns)
       const visibleColumns = table
         .getFlatHeaders()
         .filter(
@@ -63,15 +62,12 @@ export function DataTableExportPDF<TData>({
             header.column.getIsVisible()
         );
 
-      // Create headers array
       const headers = visibleColumns.map((header) => formatKeys(header.id));
 
-      // Create data array - map each row to array of values
       const data = rows.map((row: any) =>
         visibleColumns.map((header) => {
           const value = row[header.id];
 
-          // Handle special formatting for specific columns
           switch (header.id) {
             case "status":
               return value
